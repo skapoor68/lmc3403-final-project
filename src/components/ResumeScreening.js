@@ -157,7 +157,7 @@ const ResumeScreening = () => {
             {/* Resume Display */}
             <div className="bg-white rounded-lg shadow-sm overflow-hidden">
               <div className="border-b border-gray-200 px-6 py-4">
-                <h2 className="text-xl font-semibold text-gray-900">Candidate Resume</h2>
+                <h2 className="text-xl font-semibold text-gray-900">Candidate Resume {`(${currentIndex + 1}/5)`}</h2>
               </div>
               <div className="h-[38rem]">
                 <PDFViewer pdfUrl={candidates[currentIndex].resumeUrl} />
