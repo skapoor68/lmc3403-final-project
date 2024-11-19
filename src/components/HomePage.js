@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ChevronRight, Brain, Shield, ClipboardList } from 'lucide-react';
 
 const HomePage = () => {
+  const navigate = useNavigate();
+
   const modules = [
     {
       title: "Module 1: Identifying Bias in AI Responses",
@@ -13,7 +16,8 @@ const HomePage = () => {
       title: "Module 2: Resume Screening Simulation",
       description: "Practice processing resumes with AI assistance through interactive scenarios",
       icon: ClipboardList,
-      color: "bg-green-100 hover:bg-green-200"
+      color: "bg-green-100 hover:bg-green-200",
+      path: "/resume-screening"
     },
     {
       title: "Module 3: Privacy and Ethics Training",
@@ -57,6 +61,7 @@ const HomePage = () => {
               <button
                 key={index}
                 className="group text-left transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg"
+                onClick={() => navigate(module.path)}
               >
                 <div className={`h-full ${module.color} rounded-lg shadow-sm p-6 transition-all duration-200`}>
                   <div className="flex items-start space-x-4">
