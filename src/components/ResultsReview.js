@@ -1,7 +1,10 @@
 import React from 'react';
 import { Check, X, AlertTriangle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const ResultsReview = ({ userDecisions }) => {
+  const navigate = useNavigate();
+
   const correctDecisions = {
     1: {
       action: 'shortlist',
@@ -36,11 +39,26 @@ const ResultsReview = ({ userDecisions }) => {
   const getStatusIcon = (status) => {
     switch (status) {
       case 'correct':
-        return <Check className="h-6 w-6 text-green-500" />;
+        return (
+          <div className="flex items-center">
+            <Check className="h-6 w-6 text-green-500" />
+            <span className="ml-2">Correct</span>
+          </div>
+        );
       case 'incorrect':
-        return <X className="h-6 w-6 text-red-500" />;
+        return (
+          <div className="flex items-center">
+            <X className="h-6 w-6 text-red-500" />
+            <span className="ml-2">Incorrect</span>
+          </div>
+        );
       case 'pending':
-        return <AlertTriangle className="h-6 w-6 text-yellow-500" />;
+        return (
+          <div className="flex items-center">
+            <AlertTriangle className="h-6 w-6 text-yellow-500" />
+            <span className="ml-2">Pending</span>
+          </div>
+        );
       default:
         return null;
     }
@@ -140,6 +158,15 @@ const ResultsReview = ({ userDecisions }) => {
             );
           })}
         </div>
+        <div className="flex justify-center mt-8">
+          <button
+            onClick={() => navigate('/')}
+            className="flex items-center px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
+          >
+            Return to Home
+          </button>
+        </div>
+
       </main>
     </div>
   );
