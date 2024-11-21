@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, HelpCircle, X, Home } from 'lucide-react';
-import PDFViewer from './PDFViewer';
 import ResultsReview from './ResultsReview';
 import Quiz from './Quiz';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -10,7 +9,8 @@ const PrivacyEthicsTraining = () => {
   const location = useLocation(); // To get the current page URL
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
-  const [showHelpDialog, setShowHelpDialog] = useState(false);
+ const [showHelpDialog, setShowHelpDialog] = useState(false);
+    const [showInitialDialog, setShowInitialDialog] = useState(true);
 
   // Convert jobDescriptions to an array with numeric IDs
   const jobDescriptions = [
@@ -27,6 +27,8 @@ AI tools used in recruiting should be designed and deployed in a way that avoids
 ### Compliance with Anti-Discrimination Laws
 Make sure that any AI tools you use in recruiting align with current laws, such as civil rights regulations. This includes testing AI systems for bias in relation to factors like race, gender, age, disability, and more.
 
+Title VII of the Civil Rights Act of 1964 prohibits employer discrimination on the basis of  race, color, religion, national origin, or sex. The American with Disabilities Act (ADA) prohibits employer discrimination against qualified individuals with a disability. The Age Discrimination in Employment Act of 1967 prohbits employer discrimination due to age. The Equal Pay Act of 1963 prohibits employer discrimination due to sex through wages.
+
 ### Internal Testing for Bias
 It's crucial to assess AI tools for any potential unintended bias before they are deployed. For instance, ensure that the tool has been tested for fairness and compliance with legal standards. As a recruiter, you need to understand how these tests have been conducted and whether the tool's implementation might unintentionally discriminate.
 
@@ -39,32 +41,6 @@ Stay informed about future laws and regulations regarding AI in recruitment. Cre
     },
     {
       id: 1,
-      title: "Data Security",
-      description: `
-
-## Overview
-Protecting personal data, both when at rest and in transit, is essential for maintaining confidentiality and integrity, especially in AI tools that have consequential impacts. Developers and deployers must ensure that personal data is handled consistently with individuals' choices, legal obligations, and privacy policies.
-
-## Best Practices
-
-### Comprehensive Privacy Programs
-Developers and deployers should implement robust privacy and security programs to protect personal data. These programs must include administrative, technical, and physical safeguards designed to mitigate risks like unauthorized access or breaches.
-
-### Data Security
-Implement security practices that safeguard personal data and confidential information, including encryption, secure storage, and access control measures. Security tools should address both current and potential future threats. Developers should offer guidance on the appropriate and inappropriate use of their tools to ensure data security.
-
-### Privacy Protections
-Personal data used by AI tools must comply with legal obligations, privacy policies, and the Fair Information Practice Principles. AI tools should not inadvertently expose personal data, and developers and deployers must ensure that data is handled in a manner that is consistent with the individual's choices and applicable laws.
-
-### Transparency with Personal Data Usage
-Developers should provide deployers with the means to understand how personal data is being used. They must also ensure compliance with privacy laws when handling personal data obtained from deployers.
-
-### Data Minimization and Confidentiality
-Data practices should emphasize minimization of personal data use and ensure that sensitive data is only used when absolutely necessary and in accordance with privacy protections.
-      `
-    },
-    {
-      id: 2,
       title: "Transparency",
       description: `
 
@@ -74,7 +50,7 @@ Transparency in AI is crucial to ensuring that individuals understand when and h
 ## Key Concepts
 
 ### Purpose and Impact
-As a technical recruiter, it's important to understand that transparency applies not only to the functionality of AI tools but also to the data used, the decision-making process, and the potential impact on individuals.
+As a technical recruiter, it's important to understand that transparency applies not only to the functionality of AI tools but also to the data used, the decision-making process, and the potential impact on individuals. You should be transparent to both you employers and those you seek to employ on your use of AI.
 
 ### Communication
 Ensuring clear communication about how AI tools are used, their intended purpose, and the possible risks helps build a more ethical and accountable AI ecosystem.
@@ -82,15 +58,13 @@ Ensuring clear communication about how AI tools are used, their intended purpose
 ## Best Practices
 
 ### Comprehensive Disclosure
-- Ensure both developers and deployers disclose when AI tools are used, how they work, and the impact on individuals
-- Provide disclosures on the tool's purpose, training, and known efficacy limits
-- Disclose any risks or potential biases and give individuals the option to seek alternatives or accommodations
+- Disclose any risks or potential biases and give applicants or employers the option to seek alternatives or accommodations
 - Ensure transparency disclosures are understandable, accessible, and non-technical
 - Regularly update disclosures to reflect changes in AI tool usage, capabilities, or regulations
       `
     },
     {
-      id: 3,
+      id: 2,
       title: "Human Oversight",
       description: `
 
@@ -99,9 +73,6 @@ AI tools that significantly impact individuals should be designed and implemente
 
 ## Best Practices
 
-### Human in the Loop
-Developers should build AI tools that facilitate human oversight, enabling recruiters to make informed decisions, especially when the stakes are high, like hiring or promotions. The AI should assist decision-making, not automate it entirely, allowing human judgment to guide final outcomes.
-
 ### Human Involvement in Deployment
 As recruiters deploying AI tools, you should ensure that human oversight is maintained throughout the process. This is critical for preventing unfair or biased outcomes. Humans must remain accountable for decisions made with AI tools, ensuring compliance with ethical standards and legal requirements.
 
@@ -109,9 +80,9 @@ As recruiters deploying AI tools, you should ensure that human oversight is main
 The level and type of human oversight required will depend on factors like the specific use case of the AI tool, the impact on individuals, and the stage of deployment. Oversight mechanisms should be flexible and scalable to suit different roles and scenarios.
 
 ### Clarifying Roles and Responsibilities
-Developers and recruiters have distinct but complementary roles:
+Developers of these AI tools and recruiters have distinct but complementary roles:
 - Developers create tools that allow for meaningful human intervention in decision-making
-- Recruiters implement these tools in alignment with ethical standards
+- Recruiters must implement these tools in alignment with ethical standards
 - Human oversight must be present when making critical decisions about candidates
       `
     },
@@ -124,28 +95,17 @@ Developers and recruiters have distinct but complementary roles:
   const candidates = [
     {
       id: 1,
-          question: "Which of the following is a key consideration for recruiters when using AI tools in the hiring process?",
+          question: "Which of the following laws prohibits employer discrinimination on the basis of sex?",
           choices: [
-            "A) Ensuring AI tools are free from any biases, such as those based on race, gender, or age.",
-            "B) Deploying AI tools without any internal testing to speed up hiring processes.",
-            "C) Using AI tools to predict emotional states or biometric data without verification.",
-            "D) Relying solely on AI for hiring decisions without any human intervention."
+            "A) Title VII of the Civil Rights Act of 1964.",
+            "B) Equal Pay Act of 1963.",
+            "C) Age Discrimination in Employment Act of 1967",
+            "D) A and B"
           ],
-          correctAnswer: "A) Ensuring AI tools are free from any biases, such as those based on race, gender, or age." 
+          correctAnswer: "D) A and B" 
     },
     {
       id: 2,
-        question: "What is the primary goal of implementing comprehensive privacy and security programs for AI tools?",
-        choices: [
-            "A) To increase the speed of data processing.",
-            "B) To protect personal data from unauthorized access, breaches, and misuse.",
-            "C) To analyze and store all personal data indefinitely for future use.",
-            "D) To ensure AI tools can access all personal data without restrictions."
-          ],
-          correctAnswer: "B) To protect personal data from unauthorized access, breaches, and misuse."
-    },
-    {
-      id: 3,
         question: "Which of the following is a best practice for ensuring transparency in AI tools?",
         choices: [
             "A) Disclosing only the tool’s functionality, without discussing risks or limitations.",
@@ -156,7 +116,7 @@ Developers and recruiters have distinct but complementary roles:
         correctAnswer: "B) Providing clear disclosures about the tool’s training, purpose, and potential biases."
     },
     {
-      id: 4,
+      id: 3,
         question: "Why is human oversight critical in the use of AI tools in recruitment?",
         choices: [
             "A) To ensure that AI can make all decisions without human intervention.",
@@ -202,8 +162,38 @@ Developers and recruiters have distinct but complementary roles:
     return <ResultsReview userDecisions={[]} />;
   }
 
-  return (
-    <div className="min-h-screen bg-gray-50">
+    return (
+      
+        <div className="min-h-screen bg-gray-50">
+            {showInitialDialog && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-lg max-w-2xl w-full p-6">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-xl font-semibold">Welcome to the Privacy and Ethics Module!</h3>
+              <button
+                onClick={() => setShowInitialDialog(false)}
+                className="text-gray-400 hover:text-gray-500"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            <p>
+            This module is designed to guide you through some key principles for responsible and effective use of Artificial Intelligence.<br /><br />
+            The information presented here is based on the best practices outlined by the Partnership on AI in their document: "FPF Best Practices for AI".<br /><br />
+            **Disclaimer** These best practices have been paraphrased using the help of ChatGPT and have modified to better apply to technical recruiters.<br /><br />
+            Feel free to follow the link for a more comprehensive read on the original source: (<a href="https://fpf.org/wp-content/uploads/2024/02/FPF-Best-Practices-for-AI-and-WA-Tech-FINAL-with-date.pdf" target="_blank" rel="noopener noreferrer" style={{ color: 'blue', textDecoration: 'underline' }}>FPF Best Practices for AI</a>).
+            </p>
+            <div className="mt-6 flex justify-end">
+              <button
+                onClick={() => setShowInitialDialog(false)}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              >
+                Let's Begin!
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <header className="bg-purple-100 shadow-sm">
             <div className="mx-auto px-4 py-6 sm:px-6 lg:px-8 flex items-center justify-between">
                 {/* Left Section */}
