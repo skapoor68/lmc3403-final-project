@@ -23,7 +23,8 @@ const HomePage = () => {
       title: "Module 3: Privacy and Ethics Training",
       description: "Master best practices for ethical AI implementation in hiring",
       icon: Shield,
-      color: "bg-purple-100 hover:bg-purple-200"
+      color: "bg-purple-100 hover:bg-purple-200",
+      path: "/privacy-ethics"
     }
   ];
 
