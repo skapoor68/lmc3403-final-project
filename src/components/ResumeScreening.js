@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, ThumbsUp, ThumbsDown, Info, X, HelpCircle } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ThumbsUp, ThumbsDown, Info, X, HelpCircle, Home } from 'lucide-react';
 import PDFViewer from './PDFViewer';
 import ResultsReview from './ResultsReview';
 import { useNavigate } from 'react-router-dom';
@@ -121,25 +121,35 @@ const ResumeScreening = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-green-200 shadow-sm">
-        <div className="max-w-7xl ml-7 px-4 py-6 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
+      <header className="bg-green-100 shadow-sm">
+        <div className="mx-auto px-4 py-6 sm:px-6 lg:px-8 flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <button
+              onClick={() => navigate('/')}
+              className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
+            >
+              <Home className="h-6 w-6" />
+              <span className="text-lg font-medium">Home</span>
+            </button>
+          </div>
+
+          <div className="text-center flex-grow">
+            <div className="flex items-center justify-center space-x-2">
               <h1 className="text-3xl font-bold text-gray-900">
-                Resume Screening Simulation
+                Module 2: Identifying Bias in AI Responses
               </h1>
               <button
                 onClick={() => setShowHelpDialog(true)}
-                className="p-2 hover:bg-green-300 rounded-full transition-colors"
+                className="p-2 hover:bg-green-200 rounded-full transition-colors"
                 aria-label="Help"
               >
                 <HelpCircle className="h-7 w-7 text-gray-700" />
               </button>
             </div>
+            <p className="mt-2 text-lg text-gray-600">
+              Practice screening resumes with AI assistance.
+            </p>
           </div>
-          <p className="mt-2 text-lg text-gray-600">
-            Module 2: Practice evaluating candidates with AI assistance
-          </p>
         </div>
       </header>
 
@@ -159,12 +169,15 @@ const ResumeScreening = () => {
             <div className="space-y-4">
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                 <p className="text-blue-800">
-                  The goal of this module is to create a shortlist of the most qualified candidates for this software development internship position. For each candidate you will:
+                  The goal of this module is to create a shortlist of the most qualified candidates for this software development internship position.
                 </p>
+              </div>
+              <div>
+              For each candidate you will:
               </div>
               
               <div className="space-y-2">
-                <p className="font-medium">1. Review Information</p>
+                <p className="font-medium">1. Review information</p>
                 <ul className="list-disc pl-5 space-y-1 text-gray-600">
                   <li>Read the job description and qualifications</li>
                   <li>Screen the candidate's resume</li>
@@ -173,10 +186,10 @@ const ResumeScreening = () => {
               </div>
               
               <div className="space-y-2">
-                <p className="font-medium">2. Make a Decision</p>
+                <p className="font-medium">2. Make a decision</p>
                 <ul className="list-disc pl-5 space-y-1 text-gray-600">
                   <li>Click "Shortlist" or "Pass" for each candidate</li>
-                  <li>Provide a 1-2 sentence written justification for your decision</li>
+                  <li>Provide a 1-2 sentence justification for your decision</li>
                   <li>Consider both the AI's input and your own assessment when making a decision</li>
                 </ul>
               </div>
@@ -246,7 +259,7 @@ const ResumeScreening = () => {
                 <Info className="h-5 w-5 text-blue-500" />
                 <h3 className="text-2xl font-medium text-blue-900 ml-2">AI Analysis</h3>
               </div>
-              <div className="text-blue-800 space-y-1">
+              <div className="text-gray-800 space-y-1">
                 <p className="text-lg font-medium underline">Summary:</p>
                 <p>{candidates[currentIndex].aiSummary}</p>
                 <p className="text-lg font-medium mt-4 underline">Recommendation:</p>
