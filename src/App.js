@@ -4,8 +4,12 @@ import ResumeScreening from './components/ResumeScreening';
 import BiasModule from './components/bias-module/BiasModule';
 
 function App() {
+  const basename = process.env.NODE_ENV === 'production' 
+    ? '/lmc3403-final-project'
+    : '';
+
   return (
-    <Router>
+    <Router basename={basename}>
       <div className="App">
         <Routes>
           <Route path="/" element={<HomePage />} />

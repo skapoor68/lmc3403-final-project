@@ -41,7 +41,7 @@ const ResultsReview = ({ userDecisions }) => {
       case 'correct':
         return (
           <div className="flex items-center">
-            <Check className="h-6 w-6 text-green-500" />
+            <Check className="h-6 w-6 text-green-600" />
             <span className="ml-2">Correct</span>
           </div>
         );
@@ -109,9 +109,9 @@ const ResultsReview = ({ userDecisions }) => {
             const status = getDecisionStatus(parseInt(candidateId));
             
             const bgColor = {
-              correct: 'bg-green-50',
-              incorrect: 'bg-red-50',
-              pending: 'bg-yellow-50'
+              correct: 'bg-green-300',
+              incorrect: 'bg-red-200',
+              pending: 'bg-yellow-200'
             }[status];
 
             return (

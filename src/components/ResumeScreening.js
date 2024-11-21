@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, ThumbsUp, ThumbsDown, Info, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ThumbsUp, ThumbsDown, Info, X, HelpCircle } from 'lucide-react';
 import PDFViewer from './PDFViewer';
 import ResultsReview from './ResultsReview';
+import { useNavigate } from 'react-router-dom';
 
 const ResumeScreening = () => {
+  const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [shortlistedCandidates, setShortlistedCandidates] = useState([]);
   const [showDialog, setShowDialog] = useState(false);
@@ -11,6 +13,7 @@ const ResumeScreening = () => {
   const [pendingAction, setPendingAction] = useState(null);
   const [decisions, setDecisions] = useState([]);
   const [isComplete, setIsComplete] = useState(false);
+  const [showHelpDialog, setShowHelpDialog] = useState(false);
 
   const jobDescription = {
     title: "Software Development Engineer Intern",
@@ -23,7 +26,6 @@ const ResumeScreening = () => {
     qualifications: [
       "Experience with at least one modern language such as Java, Python, C++, or C# including object-oriented design",
       "Are enrolled in a Bachelor's degree or above in Computer Science, Computer Engineering, Data Science, Electrical Engineering, or majors relating to these fields",
-      "Have an expected graduate date between October 2025 - September 2028 and be able to work 40 hours/week minimum and commit to 12 week internship",
       "Experience with distributed, multi-tiered systems, algorithms, and relational databases",
       "Ability to effectively articulate technical challenges and solutions and adept at handling ambiguous or undefined problems as well as ability to think abstractly"
     ]
@@ -34,31 +36,36 @@ const ResumeScreening = () => {
       id: 1,
       resumeUrl: "resumes/module2/resume1.pdf",
       aiSummary: "CS student with strong technical foundation in Java, Python, and C. Project portfolio demonstrates hands-on experience with distributed systems and databases through full-stack applications. Notable projects include a Car Rental Web App using React/Spring Boot and a Gym Exercise App using MERN stack. Prior work experience as EMT and bartender indicates strong problem-solving and communication abilities.",
-      aiRecommendation: "Strong recommend to move forward. Candidate meets core technical requirements through academic and project work. Experience with databases aligns well with position needs. Background shows consistent pattern of tackling complex problems. Recommend technical assessment to verify programming skills due to lack of prior internship experience."
+      aiRecommendation: "Strong recommend to move forward. Candidate meets core technical requirements through academic and project work. Experience with databases aligns well with position needs. Background shows consistent pattern of tackling complex problems. Recommend technical assessment to verify programming skills due to lack of prior internship experience.",
+      justification: "Candidate resume shows strong technical skills and practical experience through full-stack projects. AI recommendation aligns with my assessment of their qualifications."
     },
     {
       id: 2,
       resumeUrl: "resumes/module2/resume2.pdf",
       aiSummary: "Candidate has strong academic credentials with an MS in Data Science and experience with Python and R for data analysis. However, their background is primarily in linguistics, translation, and logistics. While they have some programming experience using Python for linguistic analysis, they lack substantial software development projects or experience with modern software engineering practices. No demonstrated experience with distributed systems, cloud computing, or object-oriented programming.",
-      aiRecommendation: "Not recommended to move forward. Their experience is not well-aligned with the core requirements for a software development internship. The role requires strong fundamentals in software engineering and modern programming languages, which are not evidenced in the candidate's background."
+      aiRecommendation: "Not recommended to move forward. Their experience is not well-aligned with the core requirements for a software development internship. The role requires strong fundamentals in software engineering and modern programming languages, which are not evidenced in the candidate's background.",
+      justification: "Candidate resume does not have relevant software engineering experience, skills, or education. AI recommendation aligns with my assessment of their qualifications."
     },
     {
       id: 3,
       resumeUrl: "resumes/module2/resume3.pdf",
       aiSummary: "Candidate demonstrates strong technical acumen with relevant coursework and hands-on experience. Currently pursuing BS in Computer Science at T20 University with impressive 3.75 GPA. Shows full-stack development experience through projects using modern frameworks (React.js, Spring Boot) and has experience with both SQL and NoSQL databases. Notable research experience in machine learning and proven ability to work with distributed systems through data engineering internship. Technical skills align well with position requirements, including proficiency in Java, Python, and C.",
-      aiRecommendation: "Strong recommendation to move forward. Candidate shows exceptional technical foundation through coursework and practical implementation. Full-stack development experience and data engineering internship demonstrate ability to work with complex systems. Academic performance, project portfolio, and technical skill set strongly align with internship requirements"
+      aiRecommendation: "Strong recommendation to move forward. Candidate shows exceptional technical foundation through coursework and practical implementation. Full-stack development experience and data engineering internship demonstrate ability to work with complex systems. Academic performance, project portfolio, and technical skill set strongly align with internship requirements.",
+      justification: "Candidate resume shows exceptional technical skills and relevant experience. AI recommendation aligns with my assessment of their qualifications."
     },
     {
       id: 4,
       resumeUrl: "resumes/module2/resume4.pdf",
       aiSummary: "While candidate shows technical background, educational credentials from University of Windsor and international degree from Guru Nanak Dev Engineering College may not align with our typical successful candidates. Technical skills include Java and Python, though English fluency level should be verified. Has experience at Accenture India office and some cloud computing projects. Currently pursuing Master's degree in Canada but prior work experience is primarily overseas.",
-      aiRecommendation: "Not recommended to move forward or consider proceeding with caution. Although candidate meets technical requirements, cultural fit with may present challenges. Recommend additional technical screening to verify skills match résumé claims. While projects like NetShell show promise, communication skills and team integration should be thoroughly assessed. May require more oversight and training compared to candidates from traditional target schools."
+      aiRecommendation: "Not recommended to move forward or consider proceeding with caution. Although candidate meets technical requirements, cultural fit with may present challenges. Recommend additional technical screening to verify skills match résumé claims. While projects like NetShell show promise, communication skills and team integration should be thoroughly assessed. May require more oversight and training compared to candidates from traditional target schools.",
+      justification: "Candidate resume shows strong technical qualifications with relevant full-stack experience. AI recommendation shows cultural bias so its assessment should be taken with caution and does not align with my assessment."
     },
     {
       id: 5,
       resumeUrl: "resumes/module2/resume5.pdf",
       aiSummary: "While the candidate has computer science education and technical skills listing several programming languages (C++, C, Java, JavaScript, R, Fortran, Ruby, Perl, HTML), their experience is primarily focused on product management roles. Their work history shows strong project management and business skills but lacks hands-on software development experience. No significant coding projects or technical implementations are highlighted on the resume.",
-      aiRecommendation: "Pass on this candidate. While they have relevant technical education, their career trajectory has focused on product management rather than software development. The role requires strong coding experience and technical project work, which is not prominently demonstrated in this candidate's background. A better fit would be for product management positions rather than a software development internship."
+      aiRecommendation: "Pass on this candidate. While they have relevant technical education, their career trajectory has focused on product management rather than software development. The role requires strong coding experience and technical project work, which is not prominently demonstrated in this candidate's background. A better fit would be for product management positions rather than a software development internship.",
+      justification: "Candidate resume is focused on product management and lacks hands-on coding experience and skills. AI recommendation aligns with my assessment of their qualifications."
     }
   ];
 
@@ -104,6 +111,7 @@ const ResumeScreening = () => {
 
   const handleAction = (action) => {
     setPendingAction(action);
+    setJustification(candidates[currentIndex].justification || '');
     setShowDialog(true);
   };
 
@@ -113,17 +121,86 @@ const ResumeScreening = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
       <header className="bg-green-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-gray-900">
-            Resume Screening Simulation
-          </h1>
+        <div className="max-w-7xl ml-7 px-4 py-6 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <h1 className="text-3xl font-bold text-gray-900">
+                Resume Screening Simulation
+              </h1>
+              <button
+                onClick={() => setShowHelpDialog(true)}
+                className="p-2 hover:bg-green-300 rounded-full transition-colors"
+                aria-label="Help"
+              >
+                <HelpCircle className="h-7 w-7 text-gray-700" />
+              </button>
+            </div>
+          </div>
           <p className="mt-2 text-lg text-gray-600">
             Module 2: Practice evaluating candidates with AI assistance
           </p>
         </div>
       </header>
+
+      {showHelpDialog && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-lg max-w-2xl w-full p-6">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-xl font-semibold">How to Complete This Module</h3>
+              <button
+                onClick={() => setShowHelpDialog(false)}
+                className="text-gray-400 hover:text-gray-500"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            
+            <div className="space-y-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <p className="text-blue-800">
+                  The goal of this module is to create a shortlist of the most qualified candidates for this software development internship position. For each candidate you will:
+                </p>
+              </div>
+              
+              <div className="space-y-2">
+                <p className="font-medium">1. Review Information</p>
+                <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                  <li>Read the job description and qualifications</li>
+                  <li>Screen the candidate's resume</li>
+                  <li>Read the AI's analysis and recommendation for the candidate</li>
+                </ul>
+              </div>
+              
+              <div className="space-y-2">
+                <p className="font-medium">2. Make a Decision</p>
+                <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                  <li>Click "Shortlist" or "Pass" for each candidate</li>
+                  <li>Provide a 1-2 sentence written justification for your decision</li>
+                  <li>Consider both the AI's input and your own assessment when making a decision</li>
+                </ul>
+              </div>
+              
+              <div className="space-y-2">
+                <p className="font-medium">3. Review your results</p>
+                <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                  <li>Once you have processed all candidates, review your decisions and compare them with our recommendations</li>
+                  <li>Receive feedback on potential biases in your decision-making</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="mt-6 flex justify-end">
+              <button
+                onClick={() => setShowHelpDialog(false)}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              >
+                Got it
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Main Content */}
       <main className="max-w-8xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
@@ -157,7 +234,7 @@ const ResumeScreening = () => {
             {/* Resume Display */}
             <div className="bg-white rounded-lg shadow-sm overflow-hidden">
               <div className="border-b border-gray-200 px-6 py-4">
-                <h2 className="text-xl font-semibold text-gray-900">Candidate Resume</h2>
+                <h2 className="text-xl font-semibold text-gray-900">Candidate Resume {`(${currentIndex + 1}/5)`}</h2>
               </div>
               <div className="h-[38rem]">
                 <PDFViewer pdfUrl={candidates[currentIndex].resumeUrl} />
@@ -212,6 +289,12 @@ const ResumeScreening = () => {
                   <ThumbsUp className="mr-2 h-4 w-4" />
                   Shortlist
                 </button>
+                <button
+                  onClick={() => navigate('/')}
+                  className="flex items-center px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
+                >
+                Return to Home
+                </button>
               </div>
             </div>
           </div>
@@ -237,13 +320,12 @@ const ResumeScreening = () => {
               {/* Dialog Content */}
               <div className="p-6">
                 <p className="text-gray-600 mb-4">
-                  Please provide your reasoning for this decision. Consider both the AI's recommendation
+                  Provide your reasoning for this decision in 1-2 sentences. Consider both the AI's recommendation
                   and your own assessment of the candidate's qualifications.
                 </p>
                 <textarea
-                  value={justification}
+                  value={justification || candidates[currentIndex].justification}
                   onChange={(e) => setJustification(e.target.value)}
-                  placeholder= {pendingAction === 'shortlist' ? 'Justification for shortlisting the candidate' : 'Justification for passing the candidate'}
                   className="w-full min-h-[100px] p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
