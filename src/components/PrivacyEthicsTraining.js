@@ -305,9 +305,7 @@ Developers and recruiters have distinct but complementary roles:
               <div className="border-b border-gray-200 px-6 py-4">
                 <h2 className="text-xl font-semibold text-gray-900">Quiz {`(${currentIndex + 1}/4)`}</h2>
               </div>
-              <div className="h-[38rem]">
-                    <Quiz question={candidates[currentIndex].question} choices={candidates[currentIndex].choices} correctAnswer = {candidates[currentIndex].correctAnswer}/>
-              </div>
+                <Quiz question={candidates[currentIndex].question} choices={candidates[currentIndex].choices} correctAnswer = {candidates[currentIndex].correctAnswer}/>
             </div>      
 
             {/* Navigation Controls */}

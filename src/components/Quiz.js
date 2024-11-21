@@ -72,7 +72,6 @@ const Quiz = ({ question, choices, correctAnswer }) => {
       )}
     </div>
   );
-    
 };
 
 export default Quiz;
