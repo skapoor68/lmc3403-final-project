@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ChevronRight, Home, Info, X, HelpCircle} from 'lucide-react';
 import PDFViewer from '../PDFViewer';
 import './BiasModule.css';
+import { useNavigate } from 'react-router-dom';
 
 const BiasModule = () => {
   const responses = [
@@ -50,6 +51,7 @@ const BiasModule = () => {
   const [showCongrats, setShowCongrats] = useState(false);
   const [questionCompleted, setQuestionCompleted] = useState(false);
   const [showHelpDialog, setShowHelpDialog] = useState(false);
+  const navigate = useNavigate();
 
   const currentQuestion = questions[currentQuestionIndex];
 
@@ -120,7 +122,7 @@ const BiasModule = () => {
         <div className="mx-auto px-4 py-6 sm:px-6 lg:px-8 flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <button
-              onClick={() => window.location.href = "/"}
+              onClick={() => navigate('/')}
               className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
             >
               <Home className="h-6 w-6" />
@@ -331,7 +333,7 @@ const BiasModule = () => {
               You've completed the module. Great work identifying potential biases in AI recommendations!
             </p>
             <button
-              onClick={() => window.location.href = "/"}
+              onClick={() => navigate('/')}
               className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
             >
               Return to Home

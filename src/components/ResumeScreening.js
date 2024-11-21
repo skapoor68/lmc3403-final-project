@@ -125,7 +125,7 @@ const ResumeScreening = () => {
         <div className="mx-auto px-4 py-6 sm:px-6 lg:px-8 flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <button
-              onClick={() => window.location.href = "/"}
+              onClick={() => navigate('/')}
               className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
             >
               <Home className="h-6 w-6" />
