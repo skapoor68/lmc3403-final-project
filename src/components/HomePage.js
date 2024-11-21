@@ -10,7 +10,8 @@ const HomePage = () => {
       title: "Module 1: Identifying Bias in AI Responses",
       description: "Learn to recognize and mitigate AI bias in hiring recommendations",
       icon: Brain,
-      color: "bg-blue-100 hover:bg-blue-200"
+      color: "bg-blue-100 hover:bg-blue-200",
+      path: "/bias-module"
     },
     {
       title: "Module 2: Resume Screening Simulation",
