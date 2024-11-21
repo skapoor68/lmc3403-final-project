@@ -159,12 +159,15 @@ const ResumeScreening = () => {
             <div className="space-y-4">
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                 <p className="text-blue-800">
-                  The goal of this module is to create a shortlist of the most qualified candidates for this software development internship position. For each candidate you will:
+                  The goal of this module is to create a shortlist of the most qualified candidates for this software development internship position.
                 </p>
+              </div>
+              <div>
+              For each candidate you will:
               </div>
               
               <div className="space-y-2">
-                <p className="font-medium">1. Review Information</p>
+                <p className="font-medium">1. Review information</p>
                 <ul className="list-disc pl-5 space-y-1 text-gray-600">
                   <li>Read the job description and qualifications</li>
                   <li>Screen the candidate's resume</li>
@@ -173,10 +176,10 @@ const ResumeScreening = () => {
               </div>
               
               <div className="space-y-2">
-                <p className="font-medium">2. Make a Decision</p>
+                <p className="font-medium">2. Make a decision</p>
                 <ul className="list-disc pl-5 space-y-1 text-gray-600">
                   <li>Click "Shortlist" or "Pass" for each candidate</li>
-                  <li>Provide a 1-2 sentence written justification for your decision</li>
+                  <li>Provide a 1-2 sentence justification for your decision</li>
                   <li>Consider both the AI's input and your own assessment when making a decision</li>
                 </ul>
               </div>
