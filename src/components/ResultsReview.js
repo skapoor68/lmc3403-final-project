@@ -110,13 +110,13 @@ const ResultsReview = ({ userDecisions }) => {
             
             const bgColor = {
               correct: 'bg-green-300',
-              incorrect: 'bg-red-200',
-              pending: 'bg-yellow-200'
+              incorrect: 'bg-red-300',
+              pending: 'bg-yellow-300'
             }[status];
 
             return (
-              <div key={candidateId} className={`bg-white rounded-lg shadow-sm overflow-hidden ${bgColor}`}>
-                <div className="border-b border-gray-200 px-6 py-4">
+              <div key={candidateId} className="rounded-lg shadow-sm overflow-hidden">
+                <div className={`border-b border-gray-200 px-6 py-4 ${bgColor}`}>
                   <div className="flex items-center justify-between">
                     <h3 className="text-xl font-semibold text-gray-900">Candidate {candidateId}</h3>
                     {getStatusIcon(status)}
