@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, HelpCircle, X, Home } from 'lucide-react';
+import { ChevronLeft, ChevronRight, HelpCircle, X, Home, ExternalLink } from 'lucide-react';
 import ResultsReview from './ResultsReview';
 import Quiz from './Quiz';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const PrivacyEthicsTraining = () => {
   const navigate = useNavigate();
-  const location = useLocation(); // To get the current page URL
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
- const [showHelpDialog, setShowHelpDialog] = useState(false);
-    const [showInitialDialog, setShowInitialDialog] = useState(true);
+  const [showHelpDialog, setShowHelpDialog] = useState(true);
+  const [completedQuestions, setCompletedQuestions] = useState(new Set());
+  const [showCompletionDialog, setShowCompletionDialog] = useState(false);
+  const [allQuestionsComplete, setAllQuestionsComplete] = useState(false);
 
   // Convert jobDescriptions to an array with numeric IDs
   const jobDescriptions = [
@@ -129,106 +130,89 @@ Developers of these AI tools and recruiters have distinct but complementary role
   ];
     
     // Function to render markdown-style text with proper styling
-  const renderDescription = (text) => {
+    const renderDescription = (text) => {
+      return (
+        <div className="prose max-w-none">
+          {text.split('\n').map((line, index) => {
+            if (line.startsWith('# ')) {
+              return <h1 key={index} className="text-2xl font-bold mt-6 mb-4 text-gray-900">{line.replace('# ', '')}</h1>;
+            } else if (line.startsWith('## ')) {
+              return <h2 key={index} className="text-xl font-semibold mt-4 mb-2 text-gray-800">{line.replace('## ', '')}</h2>;
+            } else if (line.startsWith('### ')) {
+              return <h3 key={index} className="text-lg font-medium mt-3 mb-2 text-gray-700">{line.replace('### ', '')}</h3>;
+            } else if (line.startsWith('- ')) {
+              return <li key={index} className="ml-4 text-gray-600">{line.replace('- ', '')}</li>;
+            } else if (line.trim() !== '') {
+              return <p key={index} className="mb-2 text-gray-600">{line}</p>;
+            }
+            return null;
+          })}
+        </div>
+      );
+    };
+  
+    const handlePrevious = () => {
+      setCurrentIndex(prev => Math.max(0, prev - 1));
+    };
+  
+    const handleNext = () => {
+      setCurrentIndex(prev => Math.min(jobDescriptions.length - 1, prev + 1));
+    };
+
+    const handleQuizComplete = (isCorrect) => {
+      if (isCorrect) {
+        const newCompleted = new Set(completedQuestions);
+        newCompleted.add(currentIndex);
+        setCompletedQuestions(newCompleted);
+    
+        if (newCompleted.size === jobDescriptions.length) {
+          setAllQuestionsComplete(true);
+        }
+      }
+    };
+    
+    const handleCompleteModule = () => {
+      setShowCompletionDialog(true);
+    };
+  
+    if (isComplete) {
+      return <ResultsReview userDecisions={[]} />;
+    }
+  
     return (
-      <div className="prose max-w-none">
-        {text.split('\n').map((line, index) => {
-          if (line.startsWith('# ')) {
-            return <h1 key={index} className="text-2xl font-bold mt-6 mb-4 text-gray-900">{line.replace('# ', '')}</h1>;
-          } else if (line.startsWith('## ')) {
-            return <h2 key={index} className="text-xl font-semibold mt-4 mb-2 text-gray-800">{line.replace('## ', '')}</h2>;
-          } else if (line.startsWith('### ')) {
-            return <h3 key={index} className="text-lg font-medium mt-3 mb-2 text-gray-700">{line.replace('### ', '')}</h3>;
-          } else if (line.startsWith('- ')) {
-            return <li key={index} className="ml-4 text-gray-600">{line.replace('- ', '')}</li>;
-          } else if (line.trim() !== '') {
-            return <p key={index} className="mb-2 text-gray-600">{line}</p>;
-          }
-          return null;
-        })}
-      </div>
-    );
-  };
-
-  const handlePrevious = () => {
-    setCurrentIndex(prev => Math.max(0, prev - 1)); // Ensure index doesn't go below 0
-  };
-
-  const handleNext = () => {
-    setCurrentIndex(prev => Math.min(jobDescriptions.length - 1, prev + 1)); // Ensure index doesn't go out of bounds
-  };
-
-  if (isComplete) {
-    return <ResultsReview userDecisions={[]} />;
-  }
-
-    return (
-      
-        <div className="min-h-screen bg-gray-50">
-            {showInitialDialog && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg max-w-2xl w-full p-6">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-semibold">Welcome to the Privacy and Ethics Module!</h3>
+      <div className="min-h-screen bg-gray-50">
+        <header className="bg-purple-100 shadow-sm">
+          <div className="mx-auto px-4 py-6 sm:px-6 lg:px-8 flex items-center justify-between">
+            <div className="flex items-center space-x-4">
               <button
-                onClick={() => setShowInitialDialog(false)}
-                className="text-gray-400 hover:text-gray-500"
+                onClick={() => navigate('/')}
+                className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
               >
-                <X className="h-5 w-5" />
+                <Home className="h-6 w-6" />
+                <span className="text-lg font-medium">Home</span>
               </button>
             </div>
-            <p>
-            This module is designed to guide you through some key principles for responsible and effective use of Artificial Intelligence.<br /><br />
-            The information presented here is based on the best practices outlined by the Partnership on AI in their document: "FPF Best Practices for AI".<br /><br />
-            **Disclaimer** These best practices have been paraphrased using the help of ChatGPT and have modified to better apply to technical recruiters.<br /><br />
-            Feel free to follow the link for a more comprehensive read on the original source: (<a href="https://fpf.org/wp-content/uploads/2024/02/FPF-Best-Practices-for-AI-and-WA-Tech-FINAL-with-date.pdf" target="_blank" rel="noopener noreferrer" style={{ color: 'blue', textDecoration: 'underline' }}>FPF Best Practices for AI</a>).
-            </p>
-            <div className="mt-6 flex justify-end">
-              <button
-                onClick={() => setShowInitialDialog(false)}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-              >
-                Let's Begin!
-              </button>
+  
+            <div className="text-center flex-grow">
+              <div className="flex items-center justify-center space-x-2">
+                <h1 className="text-3xl font-bold text-gray-900">
+                  Module 3: Privacy and Ethics
+                </h1>
+                <button
+                  onClick={() => setShowHelpDialog(true)}
+                  className="p-2 hover:bg-purple-200 rounded-full transition-colors"
+                  aria-label="Help"
+                >
+                  <HelpCircle className="h-7 w-7 text-gray-700" />
+                </button>
+              </div>
+              <p className="mt-2 text-lg text-gray-600">
+                Learn about privacy and ethics in using AI tools
+              </p>
             </div>
           </div>
-        </div>
-      )}
-      <header className="bg-purple-100 shadow-sm">
-            <div className="mx-auto px-4 py-6 sm:px-6 lg:px-8 flex items-center justify-between">
-                {/* Left Section */}
-                <div className="flex items-center space-x-4">
-                <button
-                    onClick={() => navigate('/')}
-                    className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
-                >
-                    <Home className="h-6 w-6" />
-                    <span className="text-lg font-medium">Home</span>
-                </button>
-                </div>
-
-                {/* Center Section */}
-                <div className="text-center flex-grow">
-                <div className="flex items-center justify-center space-x-2">
-                    <h1 className="text-3xl font-bold text-gray-900">
-                    Module 3: Privacy and Ethics
-                    </h1>
-                    <button
-                    onClick={() => setShowHelpDialog(true)}
-                    className="p-2 hover:bg-purple-200 rounded-full transition-colors"
-                    aria-label="Help"
-                    >
-                    <HelpCircle className="h-7 w-7 text-gray-700" />
-                    </button>
-                </div>
-                <p className="mt-2 text-lg text-gray-600">
-                    Learn about privacy and ethics in using AI tools
-                </p>
-                </div>
-            </div>
-            </header>
-
-          
+        </header>
+  
         {showHelpDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-lg max-w-2xl w-full p-6">
@@ -245,20 +229,53 @@ Developers of these AI tools and recruiters have distinct but complementary role
             <div className="space-y-4">
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                 <p className="text-blue-800">
-                  The goal of this module is to teach you about ethical and privacy best practices for using AI:
+                  The goal of this module is to educate you on the best practices regarding the safe and ethical use of AI in the resume screening process. You will review  material on non-discrimination, transparency, and human oversight in AI hiring and answer quiz questions to assess your understanding. 
                 </p>
               </div>
-              
-              <div className="space-y-2">
-                <p className="font-medium">1. Review Information</p>
+              <div>
+              For each topic you will:
               </div>
               
               <div className="space-y-2">
-                <p className="font-medium">2. Take the Quiz</p>
+                <p className="font-medium">1. Review information</p>
+                <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                  <li>Read the topic's information on the left</li>
+                </ul>
+              </div>
+              
+              <div className="space-y-2">
+                <p className="font-medium">2. Answer the quiz question</p>
+                <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                  <li>Answer the multiple-choice question on the right</li>
+                </ul>
               </div>
               
               <div className="space-y-2">
                 <p className="font-medium">3. Review your results</p>
+                <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                  <li>After answering a question, receive feedback on the correct answer</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="mt-6 bg-purple-50 border border-purple-200 rounded-lg p-4">
+              <h4 className="text-lg font-semibold text-purple-900 mb-2">
+                About This Module's Content
+              </h4>
+              <div className="prose text-purple-800 text-m">
+                <p className="mb-2">
+                  The material in this module is sourced from the Future of Privacy Forum's {' '}
+                  <a 
+                    href="https://fpf.org/wp-content/uploads/2024/02/FPF-Best-Practices-for-AI-and-WA-Tech-FINAL-with-date.pdf" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-700 hover:text-purple-900 hover:underline inline-flex items-center"
+                  >
+                    Best Practices for AI and Workplace Assessment Technologies
+                    <ExternalLink className="ml-1 h-4 w-4" />
+                  </a>
+                  {' '}report. The FPF is a think tank that has partnered with employment companies such as LinkedIn and Workday to develop guidelines for ethical AI use in hiring. This module's material has been adapted and paraphrased from their report, with a focus for technical recruiters.
+                </p>
               </div>
             </div>
 
@@ -270,6 +287,25 @@ Developers of these AI tools and recruiters have distinct but complementary role
                 Got it
               </button>
             </div>
+          </div>
+        </div>
+        )}
+
+        {showCompletionDialog && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-lg p-6 text-center max-w-md">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Congratulations!
+            </h2>
+            <p className="text-gray-600 mb-6">
+              You've completed the Privacy and Ethics module. Great work understanding the key principles of ethical AI use in hiring!
+            </p>
+            <button
+              onClick={() => navigate('/')}
+              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+            >
+              Return to Home
+            </button>
           </div>
         </div>
       )}
@@ -289,13 +325,17 @@ Developers of these AI tools and recruiters have distinct but complementary role
             </div>
           </div>
 
-          {/* Right Column - Resume Viewer */}
           <div className="space-y-6">
             <div className="bg-white rounded-lg shadow-sm overflow-hidden">
               <div className="border-b border-gray-200 px-6 py-4">
-                <h2 className="text-xl font-semibold text-gray-900">Quiz {`(${currentIndex + 1}/4)`}</h2>
+                <h2 className="text-xl font-semibold text-gray-900">Quiz {`(${currentIndex + 1}/3)`}</h2>
               </div>
-                <Quiz question={candidates[currentIndex].question} choices={candidates[currentIndex].choices} correctAnswer = {candidates[currentIndex].correctAnswer}/>
+                <Quiz 
+                  question={candidates[currentIndex].question} 
+                  choices={candidates[currentIndex].choices} 
+                  correctAnswer = {candidates[currentIndex].correctAnswer}
+                  onComplete={handleQuizComplete}
+                />
             </div>      
 
             {/* Navigation Controls */}
@@ -319,12 +359,22 @@ Developers of these AI tools and recruiters have distinct but complementary role
                 </button>
               </div>
               <div className="flex space-x-4">
+              {allQuestionsComplete ? (
+                <button
+                  onClick={handleCompleteModule}
+                  className="flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+                >
+                  Complete Module
+                  <ChevronRight className="ml-2 h-4 w-4" />
+                </button>
+              ) : (
                 <button
                   onClick={() => navigate('/')}
                   className="flex items-center px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
                 >
                   Return to Home
                 </button>
+              )}
               </div>
             </div>
           </div>

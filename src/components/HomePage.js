@@ -38,7 +38,7 @@ const HomePage = () => {
             AI-Assisted Resume Screening
           </h1>
           <p className="mt-2 text-lg text-gray-600">
-            Interactive Training Platform for Technical Recruiters
+            An Interactive Training Platform for Technical Recruiters
           </p>
         </div>
       </header>
@@ -53,7 +53,7 @@ const HomePage = () => {
             </h2>
             <p className="text-gray-600">
               Master the skills needed to effectively and ethically leverage AI in your hiring process. 
-              Complete all three modules to earn your certification in AI-assisted resume screening.
+              Complete each module in order below.
             </p>
           </div>
 
@@ -68,7 +68,7 @@ const HomePage = () => {
                 <div className={`h-full ${module.color} rounded-lg shadow-sm p-6 transition-all duration-200`}>
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">
-                      <module.icon className="h-8 w-8 text-gray-700" />
+                      <module.icon className="h-8 w-8 text-gray-700 mt-1" />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">

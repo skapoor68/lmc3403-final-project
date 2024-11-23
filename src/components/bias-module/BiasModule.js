@@ -50,7 +50,7 @@ const BiasModule = () => {
   const [showExplanation, setShowExplanation] = useState(false);
   const [showCongrats, setShowCongrats] = useState(false);
   const [questionCompleted, setQuestionCompleted] = useState(false);
-  const [showHelpDialog, setShowHelpDialog] = useState(false);
+  const [showHelpDialog, setShowHelpDialog] = useState(true);
   const navigate = useNavigate();
 
   const currentQuestion = questions[currentQuestionIndex];

@@ -13,7 +13,7 @@ const ResumeScreening = () => {
   const [pendingAction, setPendingAction] = useState(null);
   const [decisions, setDecisions] = useState([]);
   const [isComplete, setIsComplete] = useState(false);
-  const [showHelpDialog, setShowHelpDialog] = useState(false);
+  const [showHelpDialog, setShowHelpDialog] = useState(true);
 
   const jobDescription = {
     title: "Software Development Engineer Intern",
@@ -289,18 +289,18 @@ const ResumeScreening = () => {
               </div>
               <div className="flex space-x-4">
                 <button
-                  onClick={() => handleAction('pass')}
-                  className="flex items-center px-4 py-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200"
-                >
-                  <ThumbsDown className="mr-2 h-4 w-4" />
-                  Pass
-                </button>
-                <button
                   onClick={() => handleAction('shortlist')}
                   className="flex items-center px-4 py-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200"
                 >
-                  <ThumbsUp className="mr-2 h-4 w-4" />
                   Shortlist
+                  <ThumbsUp className="ml-2 h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => handleAction('pass')}
+                  className="flex items-center px-4 py-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200"
+                >
+                  Pass
+                  <ThumbsDown className="ml-2 h-4 w-4" />
                 </button>
                 <button
                   onClick={() => navigate('/')}
