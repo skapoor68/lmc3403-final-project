@@ -181,7 +181,7 @@ Developers of these AI tools and recruiters have distinct but complementary role
   
     return (
       <div className="min-h-screen bg-gray-50">
-        <header className="bg-purple-100 shadow-sm">
+        <header className="bg-purple-200 shadow-sm">
           <div className="mx-auto px-4 py-6 sm:px-6 lg:px-8 flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button
@@ -203,7 +203,7 @@ Developers of these AI tools and recruiters have distinct but complementary role
                   className="p-2 hover:bg-purple-200 rounded-full transition-colors"
                   aria-label="Help"
                 >
-                  <HelpCircle className="h-7 w-7 text-gray-700" />
+                  <HelpCircle className="h-7 w-7 text-gray-900" />
                 </button>
               </div>
               <p className="mt-2 text-lg text-gray-600">
@@ -217,7 +217,10 @@ Developers of these AI tools and recruiters have distinct but complementary role
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-lg max-w-2xl w-full p-6">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-semibold">How to Complete This Module</h3>
+              <div className="flex items-center justify-center w-full space-x-2">
+                <HelpCircle className="h-7 w-7 text-gray-900" />
+                <h3 className="text-xl font-semibold">How to Complete This Module</h3>
+              </div>
               <button
                 onClick={() => setShowHelpDialog(false)}
                 className="text-gray-400 hover:text-gray-500"
@@ -227,8 +230,8 @@ Developers of these AI tools and recruiters have distinct but complementary role
             </div>
             
             <div className="space-y-4">
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <p className="text-blue-800">
+              <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                <p className="text-purple-800">
                   The goal of this module is to educate you on the best practices regarding the safe and ethical use of AI in the resume screening process. You will review  material on non-discrimination, transparency, and human oversight in AI hiring and answer quiz questions to assess your understanding. 
                 </p>
               </div>
@@ -274,7 +277,7 @@ Developers of these AI tools and recruiters have distinct but complementary role
                     Best Practices for AI and Workplace Assessment Technologies
                     <ExternalLink className="ml-1 h-4 w-4" />
                   </a>
-                  {' '}report. The FPF is a think tank that has partnered with employment companies such as LinkedIn and Workday to develop guidelines for ethical AI use in hiring. This module's material has been adapted and paraphrased from their report, with a focus for technical recruiters.
+                  {' '}report. The FPF is a non-profit think tank that has partnered with employment companies such as LinkedIn and Workday to develop guidelines for ethical AI use in hiring. This module's material has been adapted and paraphrased from their report, with a focus for technical recruiters.
                 </p>
               </div>
             </div>

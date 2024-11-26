@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, ThumbsUp, ThumbsDown, Info, X, HelpCircle, Home } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ThumbsUp, ThumbsDown, Sparkles, X, HelpCircle, Home } from 'lucide-react';
 import PDFViewer from './PDFViewer';
 import ResultsReview from './ResultsReview';
 import { useNavigate } from 'react-router-dom';
@@ -121,7 +121,7 @@ const ResumeScreening = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-green-100 shadow-sm">
+      <header className="bg-green-200 shadow-sm">
         <div className="mx-auto px-4 py-6 sm:px-6 lg:px-8 flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <button
@@ -136,14 +136,14 @@ const ResumeScreening = () => {
           <div className="text-center flex-grow">
             <div className="flex items-center justify-center space-x-2">
               <h1 className="text-3xl font-bold text-gray-900">
-                Module 2: Identifying Bias in AI Responses
+                Module 2: Resume Screening Simulation
               </h1>
               <button
                 onClick={() => setShowHelpDialog(true)}
                 className="p-2 hover:bg-green-200 rounded-full transition-colors"
                 aria-label="Help"
               >
-                <HelpCircle className="h-7 w-7 text-gray-700" />
+                <HelpCircle className="h-7 w-7 text-gray-900" />
               </button>
             </div>
             <p className="mt-2 text-lg text-gray-600">
@@ -157,7 +157,10 @@ const ResumeScreening = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-lg max-w-2xl w-full p-6">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-semibold">How to Complete This Module</h3>
+              <div className="flex items-center justify-center w-full space-x-2">
+                <HelpCircle className="h-7 w-7 text-gray-900" />
+                <h3 className="text-xl font-semibold">How to Complete This Module</h3>
+              </div>
               <button
                 onClick={() => setShowHelpDialog(false)}
                 className="text-gray-400 hover:text-gray-500"
@@ -167,9 +170,9 @@ const ResumeScreening = () => {
             </div>
             
             <div className="space-y-4">
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <p className="text-blue-800">
-                  The goal of this module is to create a shortlist of the most qualified candidates for this software development internship position.
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                <p className="text-green-800">
+                  The goal of this module is to create a shortlist of the most qualified candidates for a software development internship position.
                 </p>
               </div>
               <div>
@@ -256,8 +259,8 @@ const ResumeScreening = () => {
 
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-5">
               <div className="flex items-center mb-3">
-                <Info className="h-5 w-5 text-blue-500" />
-                <h3 className="text-2xl font-medium text-blue-900 ml-2">AI Analysis</h3>
+                <Sparkles className="h-5 w-5 text-blue-600" />
+                <h3 className="text-2xl font-medium text-blue-600 ml-2">AI Analysis</h3>
               </div>
               <div className="text-gray-800 space-y-1">
                 <p className="text-lg font-medium underline">Summary:</p>

@@ -10,34 +10,34 @@ const HomePage = () => {
       title: "Module 1: Identifying Bias in AI Responses",
       description: "Learn to recognize and mitigate AI bias in hiring recommendations",
       icon: Brain,
-      color: "bg-blue-100 hover:bg-blue-200",
+      color: "bg-orange-200 hover:bg-orange-300",
       path: "/bias-module"
     },
     {
       title: "Module 2: Resume Screening Simulation",
-      description: "Practice processing resumes with AI assistance through interactive scenarios",
+      description: "Practice processing resumes with AI assistance",
       icon: ClipboardList,
-      color: "bg-green-100 hover:bg-green-200",
+      color: "bg-green-200 hover:bg-green-300",
       path: "/resume-screening"
     },
     {
       title: "Module 3: Privacy and Ethics Training",
-      description: "Master best practices for ethical AI implementation in hiring",
+      description: "Learn best practices for ethical AI implementation in hiring",
       icon: Shield,
-      color: "bg-purple-100 hover:bg-purple-200",
+      color: "bg-purple-200 hover:bg-purple-300",
       path: "/privacy-ethics"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-white shadow-sm">
+      <header className="bg-white shadow-md">
         <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold text-gray-900">
             AI-Assisted Resume Screening
           </h1>
-          <p className="mt-2 text-lg text-gray-600">
+          <p className="mt-2 text-lg text-gray-700">
             An Interactive Training Platform for Technical Recruiters
           </p>
         </div>
@@ -47,13 +47,12 @@ const HomePage = () => {
       <main className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <div className="space-y-8">
           {/* Welcome Section */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
+          <div className="bg-white rounded-lg p-6 border border-gray-800">
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">
               Welcome to Your Training Platform
             </h2>
-            <p className="text-gray-600">
-              Master the skills needed to effectively and ethically leverage AI in your hiring process. 
-              Complete each module in order below.
+            <p className="text-gray-700">
+              Complete each module below in order to learn the skills needed to effectively use AI in your resume screening process.
             </p>
           </div>
 
@@ -74,7 +73,7 @@ const HomePage = () => {
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">
                         {module.title}
                       </h3>
-                      <p className="text-gray-600 mb-4">
+                      <p className="text-gray-700 mb-4">
                         {module.description}
                       </p>
                       <div className="flex items-center text-blue-600 group-hover:text-blue-700">
