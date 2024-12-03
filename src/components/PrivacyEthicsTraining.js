@@ -96,7 +96,7 @@ Developers of these AI tools and recruiters have distinct but complementary role
   const candidates = [
     {
       id: 1,
-          question: "Which of the following laws prohibits employer discrinimination on the basis of sex?",
+          question: "When implementing AI hiring tools, which laws require employers to prevent discrimination based on sex?",
           choices: [
             "A) Title VII of the Civil Rights Act of 1964.",
             "B) Equal Pay Act of 1963.",
